@@ -99,7 +99,7 @@
       }
 
       .section {
-        margin: 10px 0;
+        margin: 6px 0;     /* Reduced from 10px */
       }
 
       .section-title-input {
@@ -146,15 +146,16 @@
         width: 100%;
         border-collapse: collapse;
         border-spacing: 0;
-        margin: 6px 0;
+        margin: 4px 0;  /* Reduced from 6px */
         background: transparent;
       }
 
       .data-table th,
       .data-table td {
-        padding: 4px 6px;
+        padding: 3px 4px;  /* Reduced from 4px 6px */
         border: 1px solid #ddd;
         background: #fff;
+        font-size: 7pt;    /* Reduced from 7.5pt */
       }
 
       .data-table th {
@@ -171,6 +172,36 @@
         .data-table td {
           border: 1px solid #000;
           background: none;
+        }
+
+        /* Remove links/URLs from showing */
+        a {
+          text-decoration: none;
+        }
+
+        a[href]:after {
+          content: none !important;
+        }
+
+        /* Ensure content fits on one page */
+        .container {
+          max-height: 297mm;
+          overflow: hidden;
+        }
+
+        /* Reduce margins further in print */
+        .section {
+          margin: 4px 0;
+        }
+
+        .data-table {
+          margin: 3px 0;
+        }
+
+        /* Hide empty space in tables */
+        .data-table td:empty,
+        .data-table th:empty {
+          display: none;
         }
       }
 
@@ -311,12 +342,12 @@
       }
 
       .table-input {
-        font-size: 7.5pt; /* Match table font size */
+        font-size: 7pt;
       }
 
       textarea.table-input {
-        min-height: 40px; /* Reduced height */
-        max-height: 60px;
+        min-height: 35px;  /* Reduced from 40px */
+        max-height: 50px;  /* Reduced from 60px */
       }
 
       .edit-mode {
