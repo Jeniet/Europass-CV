@@ -141,25 +141,37 @@
         padding: 4px;
       }
 
-      /* Table Styles */
+      /* Table specific styles */
       .data-table {
         width: 100%;
         border-collapse: collapse;
-        margin: 6px 0; /* Reduced from 10px */
-        font-size: 7.5pt; /* Reduced from 8pt */
+        border-spacing: 0;
+        margin: 6px 0;
+        background: transparent;
       }
 
       .data-table th,
       .data-table td {
-        padding: 4px 6px; /* Reduced from 6px 8px */
+        padding: 4px 6px;
         border: 1px solid #ddd;
-        text-align: left;
+        background: #fff;
       }
 
       .data-table th {
         background: #f5f5f5;
-        color: #004f9f;
-        font-weight: bold;
+      }
+
+      /* Print styles */
+      @media print {
+        .data-table {
+          background: none;
+        }
+
+        .data-table th,
+        .data-table td {
+          border: 1px solid #000;
+          background: none;
+        }
       }
 
       .work-section,
@@ -795,14 +807,15 @@ I hereby declare that the information provided in this resume is true and correc
 
       function addWorkRow() {
         const tbody = document.querySelector('#workTable tbody');
-        const row = tbody.insertRow();
+        const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="text" class="table-input" placeholder="Company Name"></td>
-            <td><input type="text" class="table-input" placeholder="Position"></td>
-            <td><input type="text" class="table-input" placeholder="Duration"></td>
-            <td style="width: 100%"><textarea class="table-input" placeholder="Key responsibilities" rows="3"></textarea></td>
-            <td class="action-column"><button class="delete-row-btn" onclick="this.closest('tr').remove()">×</button></td>
+            <td style="border-top: 1px solid #ddd;"><input type="text" class="table-input" placeholder="Company Name"></td>
+            <td style="border-top: 1px solid #ddd;"><input type="text" class="table-input" placeholder="Position"></td>
+            <td style="border-top: 1px solid #ddd;"><input type="text" class="table-input" placeholder="Duration"></td>
+            <td style="border-top: 1px solid #ddd;"><textarea class="table-input" placeholder="Key responsibilities" rows="3"></textarea></td>
+            <td style="border-top: 1px solid #ddd;" class="action-column"><button class="delete-row-btn" onclick="this.closest('tr').remove()">×</button></td>
         `;
+        tbody.appendChild(row);
       }
 
       function addSkillRow() {
